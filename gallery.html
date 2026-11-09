@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Galerie Erasmus – Turcia & Cehia</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="brand">
+       <img src="images/logouri/Logo.jpg" alt="Sigla liceului" class="school-logo">
+      <div>
+        <div class="site-title">Galerie foto — Turcia & Cehia</div>
+      </div>
+    </div>
+
+    <nav>
+      <a href="index.html" class="nav-btn">Acasă</a>
+      <a href="romania.html" class="nav-btn">România</a>
+      <a href="czech.html" class="nav-btn">Cehia</a>
+      <a href="turkey.html" class="nav-btn">Turcia</a>
+      <a href="conclusion.html" class="nav-btn">Concluzii</a>
+      <a href="survey.html" class="nav-btn">Sondaj</a>
+      <a href="gallery.html" class="nav-btn active">Galerie</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="chapter-card">
+      <h2>Galerie Erasmus+</h2>
+      <p style="color: var(--muted); font-size: 15px;">
+        Imagini reprezentative din activitățile proiectului n Turcia 🇹🇷 și Cehia 🇨🇿.
+      </p>
+    </section>
+
+    <!-- Galeria -->
+    <section class="chapter-card">
+      <div class="schemes" style="flex-direction: column; gap: 20px;">
+        <div id="filters" style="text-align:center;">
+          <button class="nav-btn active" data-filter="all">Toate</button>
+          <button class="nav-btn" data-filter="turcia">Turcia 🇹🇷</button>
+          <button class="nav-btn" data-filter="cehia">Cehia 🇨🇿</button>
+        </div>
+        <div class="gallery" id="gallery"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+  <div class="footer-logos">
+    <img src="images/logouri/Acred.jpg" alt="Acreditare CNA Erasmus+" />
+    <img src="images/logouri/Logoerasmus.jpg" alt="Erasmus+" />
+    <img src="images/logouri/Cofounded.jpg" alt="Uniunea Europeană" />
+  </div>
+  <p>&copy; EcoUnion</p>
+</footer>
+  <script>
+    // 🖼️ Date galerie — 25 imagini / țară
+    const totalTurcia = 16;
+    const totalCehia = 22;
+    const gallery = document.getElementById("gallery");
+
+    // Generează toate imaginile
+    for (let i = 1; i <= totalTurcia; i++) {
+      const item = document.createElement("div");
+      item.className = "gallery-item turcia";
+      item.innerHTML = `<img src="images/turcia/t${i}.jpg" alt="Turcia ${i}">`;
+      gallery.appendChild(item);
+    }
+
+    for (let i = 1; i <= totalCehia; i++) {
+      const item = document.createElement("div");
+      item.className = "gallery-item cehia";
+      item.innerHTML = `<img src="images/cehia/c${i}.jpg" alt="Cehia ${i}">`;
+      gallery.appendChild(item);
+    }
+
+    // Filtrare imagini
+    const buttons = document.querySelectorAll("#filters .nav-btn");
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        buttons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        const filter = btn.dataset.filter;
+        document.querySelectorAll(".gallery-item").forEach(img => {
+          img.style.display =
+            filter === "all" || img.classList.contains(filter)
+              ? "inline-block"
+              : "none";
+        });
+      });
+    });
+  </script>
+
+  <style>
+    /* Layout galerie integrat în stilul siteului */
+    .gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  justify-items: center; /* CENTRARE imagini pe orizontală */
+}
+
+.gallery-item {
+  width: 200px;
+  height: 150px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  background: var(--card);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+    @media (max-width: 1000px) {
+      .gallery { column-count: 3; }
+    }
+
+    @media (max-width: 700px) {
+      .gallery { column-count: 2; }
+    }
+
+    @media (max-width: 500px) {
+      .gallery { column-count: 1; }
+    }
+  </style>
+</body>
+</html>

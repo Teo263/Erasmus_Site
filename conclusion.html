@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, shrink-to-fit=no">
+  <title>Concluzii Comparative</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header>
+    <div class="brand">
+    <img src="images/logouri/Logo.jpg" alt="Sigla liceului" class="school-logo">
+    <div>
+      <div class="site-title">Concluzii</div>
+      <div class="site-sub">Concluziile comparative</div>
+    </div>
+  </div>
+    <nav>
+      <a href="index.html" class="nav-btn">Acasă</a>
+      <a href="romania.html" class="nav-btn">România</a>
+      <a href="czech.html" class="nav-btn">Cehia</a>
+      <a href="turkey.html" class="nav-btn">Turcia</a>
+      <a href="conclusion.html" class="nav-btn active">Concluzii</a>
+      <a href="survey.html" class="nav-btn">Sondaj</a>
+      <a href="gallery.html" class="nav-btn">Galerie</a>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <!-- Tabel comparativ general -->
+    <section class="chapter-card">
+      <h2>Indicatori comparativi principali (date reale)</h2>
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Țară</th>
+            <th>PM2.5 (μg/m³, 2019)</th>
+            <th>Index Calitate Sol (0–100)</th>
+            <th>Scor Politici de Mediu (0–6)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>🇷🇴 România</td>
+            <td>13.7</td>
+            <td>38</td>
+            <td>4.12</td>
+          </tr>
+          <tr>
+            <td>🇨🇿 Cehia</td>
+            <td>14.3</td>
+            <td>50</td>
+            <td>3.82</td>
+          </tr>
+          <tr>
+            <td>🇹🇷 Turcia</td>
+            <td>33</td>
+            <td>33</td>
+            <td>2.51</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="font-size: 0.9em; color: #555; margin-top: 8px;">
+        *Sursa: Our World in Data (2024), OECD Environmental Policy Stringency Index (2023), Yale EPI Soil Indicators (2022)*
+      </p>
+    </section>
+
+    <!-- Grafic comparativ PM2.5 -->
+    <section class="chapter-card">
+      <h2>Compararea calității aerului (PM2.5)</h2>
+      <canvas id="pm25Chart"></canvas>
+    </section>
+
+    <!-- Grafic scor politici -->
+    <section class="chapter-card">
+      <h2>Compararea scorurilor de politici</h2>
+      <canvas id="policyChart"></canvas>
+    </section>
+
+    <!-- Scheme + Observații -->
+    <section class="chapter-card">
+      <h2>Scheme comparative și observații</h2>
+      <div class="schemes">
+        <div class="scheme-box">🇷🇴 România → Probleme majore urbane, soluții prin PNRR</div>
+        <div class="scheme-box">🇨🇿 Cehia → Exemplu de bune practici (brownfields, transport electric)</div>
+        <div class="scheme-box">🇹🇷 Turcia → Presiune ridicată pe resurse naturale, tranziție lentă</div>
+      </div>
+    </section>
+
+  </main>
+
+ <footer>
+  <div class="footer-logos">
+    <img src="images/logouri/Acred.jpg" alt="Acreditare CNA Erasmus+" />
+    <img src="images/logouri/Logoerasmus.jpg" alt="Erasmus+" />
+    <img src="images/logouri/Cofounded.jpg" alt="Uniunea Europeană" />
+  </div>
+  <p>&copy; EcoUnion</p>
+</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+  /* -------------------- DATE REALE PM2.5 -------------------- */
+  const romaniaData = [
+    {year: 2010, pm25: 18.05504},
+    {year: 2011, pm25: 18.67849},
+    {year: 2012, pm25: 16.96099},
+    {year: 2013, pm25: 15.95671},
+    {year: 2014, pm25: 15.96018},
+    {year: 2015, pm25: 15.41342},
+    {year: 2016, pm25: 14.84775},
+    {year: 2017, pm25: 15.32410},
+    {year: 2018, pm25: 15.59612},
+    {year: 2019, pm25: 13.30043}
+  ];
+  const czechiaData = [
+    {year: 2010, pm25: 20.24895},
+    {year: 2011, pm25: 20.80231},
+    {year: 2012, pm25: 18.80054},
+    {year: 2013, pm25: 18.07482},
+    {year: 2014, pm25: 18.27818},
+    {year: 2015, pm25: 17.51590},
+    {year: 2016, pm25: 16.62194},
+    {year: 2017, pm25: 16.99135},
+    {year: 2018, pm25: 17.50349},
+    {year: 2019, pm25: 14.34125}
+  ];
+  const turkeyData = [
+    {year: 2010, pm25: 23.73719},
+    {year: 2011, pm25: 23.27972},
+    {year: 2012, pm25: 22.75530},
+    {year: 2013, pm25: 23.07130},
+    {year: 2014, pm25: 22.85719},
+    {year: 2015, pm25: 22.95707},
+    {year: 2016, pm25: 22.53114},
+    {year: 2017, pm25: 22.88792},
+    {year: 2018, pm25: 23.28703},
+    {year: 2019, pm25: 23.25106}
+  ];
+
+  const years = romaniaData.map(d => d.year);
+  const romaniaPM = romaniaData.map(d => d.pm25);
+  const czechiaPM = czechiaData.map(d => d.pm25);
+  const turkeyPM = turkeyData.map(d => d.pm25);
+
+  const ctx = document.getElementById('pm25Chart').getContext('2d');
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: years,
+      datasets: [
+        {
+          label: 'România',
+          data: romaniaPM,
+          borderColor: '#ff4d4d',
+          backgroundColor: 'rgba(255,77,77,0.3)',
+          fill: true,
+          tension: 0.4
+        },
+        {
+          label: 'Cehia',
+          data: czechiaPM,
+          borderColor: '#4da6ff',
+          backgroundColor: 'rgba(77,166,255,0.3)',
+          fill: true,
+          tension: 0.4
+        },
+        {
+          label: 'Turcia',
+          data: turkeyPM,
+          borderColor: '#ffcc00',
+          backgroundColor: 'rgba(255,204,0,0.3)',
+          fill: true,
+          tension: 0.4
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        title: {
+          display: true,
+          text: 'Evoluția concentrației medii anuale de PM2.5 (2010–2019)',
+          font: { size: 18, weight: 'bold' }
+        },
+        tooltip: { mode: 'index', intersect: false },
+        legend: { position: 'bottom' }
+      },
+      interaction: { mode: 'nearest', axis: 'x', intersect: false },
+      scales: {
+        y: {
+          title: { display: true, text: 'μg/m³ (media anuală ponderată pe populație)' },
+          beginAtZero: false
+        },
+        x: { title: { display: true, text: 'Anul' } }
+      }
+    }
+  });
+
+  /* -------------------- GRAFIC SCORURI POLITICI -------------------- */
+  const policyCtx = document.getElementById('policyChart').getContext('2d');
+  new Chart(policyCtx, {
+    type: 'bar',
+    data: {
+      labels: ['România', 'Cehia', 'Turcia'],
+      datasets: [{
+        label: 'Scor politici de mediu (OECD EPS, 2023)',
+        data: [2.6, 3.8, 1.9],
+        backgroundColor: ['#ff4d4d', '#4da6ff', '#ffcc00']
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        title: {
+          display: true,
+          text: 'Compararea scorurilor de politici de mediu (0–6)',
+          font: { size: 18, weight: 'bold' }
+        },
+        legend: { display: false }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 6,
+          title: { display: true, text: 'Scor OECD EPS' }
+        }
+      }
+    }
+  });
+  </script>
+</html>

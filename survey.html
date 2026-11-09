@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Raport sondaj — European Youth, Shared Future</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header>
+    <div class="brand" style="gap:10px;align-items:center;">
+      <img src="images/logouri/Logo.jpg" alt="Sigla liceului" class="school-logo">
+      <div>
+        <div class="site-title">Analiză sondaj elevi (Cehia · România · Turcia)</div>
+      </div>
+    </div>
+
+    <nav style="margin-top:12px;">
+      <a href="index.html" class="nav-btn">Acasă</a>
+      <a href="romania.html" class="nav-btn">România</a>
+      <a href="czech.html" class="nav-btn">Cehia</a>
+      <a href="turkey.html" class="nav-btn">Turcia</a>
+      <a href="conclusion.html" class="nav-btn">Concluzii</a>
+      <a href="survey.html" class="nav-btn active">Sondaj</a>
+      <a href="gallery.html" class="nav-btn">Galerie</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>Raport — Analiză sondaj "European Youth, Shared Future"</h2>
+      <p>
+        Proiect Erasmus+ KA120 — Colegiul Național „Anastasescu” (Roșiori de Vede). 
+        Perioada: iulie 2024 – august 2025. Respondenti: <strong>312 elevi</strong> (Cehia, România, Turcia).
+      </p>
+      <p style="font-size:0.9rem;color:var(--muted);">
+        Raportul original (interpretare și date detaliate) poate fi descărcat din fișierul încărcat cu analiza sondajului.
+      </p>
+      <div style="margin-top:10px;">
+        <a class="nav-btn" href="#" id="downloadBtn">Descarcă raport (original)</a>
+      </div>
+    </section>
+
+    <!-- GRID CHARTS -->
+    <section class="chapter-card">
+      <h3>Sumar cifre cheie</h3>
+      <div class="grid" style="grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap:14px;">
+        <div class="card" style="text-align:center;">
+          <h3>Respondenti</h3>
+          <div style="font-size:28px;font-weight:700;color:var(--accent)">312</div>
+          <div style="color:var(--muted)">15–18 ani</div>
+        </div>
+
+        <div class="card" style="text-align:center;">
+          <h3>Au auzit de UE</h3>
+          <div style="font-size:28px;font-weight:700;color:#16a34a">82%</div>
+          <div style="color:var(--muted)">nivel de informare</div>
+        </div>
+
+        <div class="card" style="text-align:center;">
+          <h3>Înțeleg rolul UE</h3>
+          <div style="font-size:28px;font-weight:700;color:#0ea5a2">47%</div>
+          <div style="color:var(--muted)">înțelegere clară</div>
+        </div>
+
+        <div class="card" style="text-align:center;">
+          <h3>Importanța implicării</h3>
+          <div style="font-size:28px;font-weight:700;color:#2563eb">4.3 / 5</div>
+          <div style="color:var(--muted)">media răspunsurilor</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Charts group -->
+    <section class="chapter-card">
+      <h3>Vizualizări din sondaj</h3>
+      <div class="grid" style="grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap:16px;">
+
+        <div class="cardChart">
+          <h4>Awareness — Au auzit de UE</h4>
+          <canvas id="awarenessChart" class="chart-canvas"></canvas>
+        </div>
+
+        <div class="cardChart">
+          <h4>Înțelegerea structurii UE</h4>
+          <canvas id="understandChart" class="chart-canvas"></canvas>
+        </div>
+
+        <div class="cardChart">
+          <h4>Participare la inițiative europene</h4>
+          <canvas id="participationChart" class="chart-canvas"></canvas>
+        </div>
+
+        <div class="cardChart">
+          <h4>Percepția bugetului militar (62% știu)</h4>
+          <canvas id="militaryAwareness" class="chart-canvas"></canvas>
+        </div>
+
+        <div class="cardChart">
+          <h4>Opinii despre alocarea bugetului</h4>
+          <canvas id="budgetOpinion" class="chart-canvas"></canvas>
+        </div>
+
+        <div class="cardChart">
+          <h4>Canale eficiente de comunicare</h4>
+          <canvas id="commChart" class="chart-canvas"></canvas>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="chapter-card">
+      <h3>Tabel cu toate datele extraase (sintetic)</h3>
+      <table class="comparison-table">
+        <thead>
+          <tr><th>Indicator</th><th>Valoare</th><th>Comentariu</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Nr. respondenți</td><td>312</td><td>Cehia · România · Turcia</td></tr>
+          <tr><td>Au auzit de UE</td><td>82%</td><td>Majoritatea</td></tr>
+          <tr><td>Înțeleg rolul UE</td><td>47%</td><td>Nevoie de educație civică</td></tr>
+          <tr><td>Importanța implicării (medie)</td><td>4.3 / 5</td><td>Nivel ridicat</td></tr>
+          <tr><td>Simt că sunt ascultați</td><td>31%</td><td>Perceput scăzut</td></tr>
+          <tr><td>Participare la proiecte europene</td><td>26%</td><td>Erasmus+, eTwinning etc.</td></tr>
+          <tr><td>Au auzit despre buget militar</td><td>62%</td><td>41% susțin creșterea</td></tr>
+          <tr><td>Preferință alocare resurse</td><td>75% spre social/economic</td><td>Prioritate socială</td></tr>
+          <tr><td>Canal comunicație preferat</td><td>70% Social media / evenimente</td><td>Canale digitale & școală</td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top:10px;color:var(--muted);font-size:0.9rem;">
+        Interpretare și recomandări detaliate în raport (descărcabil).
+      </p>
+    </section>
+
+    <section class="card">
+      <h3>Propuneri practice (extrase din raport)</h3>
+      <ul>
+        <li>Lecții interactive despre UE în programa școlară</li>
+        <li>Evenimente Erasmus tematice axate pe participare civică</li>
+        <li>Platforme digitale pentru dialog tineri–instituții</li>
+        <li>Campanii pe social media și activități în școli (70% eficiență estimată)</li>
+      </ul>
+    </section>
+
+  </main>
+
+ <footer>
+  <div class="footer-logos">
+    <img src="images/logouri/Acred.jpg" alt="Acreditare CNA Erasmus+" />
+    <img src="images/logouri/Logoerasmus.jpg" alt="Erasmus+" />
+    <img src="images/logouri/Cofounded.jpg" alt="Uniunea Europeană" />
+  </div>
+  <p>&copy; EcoUnion</p>
+</footer>
+
+  <script>
+    // --- Date extrase din raport (Raport_Analiza_Sondaj_European_Youth_Shared_Future.docx) ---
+    // Sursa internă (raport încărcat): see attached file.
+    const totalRespondents = 312;
+
+    // Key values
+    const heardUE = 82;
+    const understandUE = 47;
+    const importanceMean = 4.3;
+    const feelHeard = 31;
+    const participated = 26;
+    const knowMilitary = 62;
+    const militaryNeeded = 41;
+    const redirectToSocial = 39;
+    const preferSocialFocus = 75;
+    const socialMediaEffect = 70;
+
+    // CHART: awareness
+    const ctxAw = document.getElementById('awarenessChart').getContext('2d');
+    new Chart(ctxAw, {
+      type: 'doughnut',
+      data: {
+        labels: ['Au auzit de UE', 'Nu/sunt nesigure'],
+        datasets: [{
+          data: [heardUE, 100-heardUE],
+          backgroundColor: ['#16a34a','#e6eef8']
+        }]
+      },
+      options: { responsive:true, plugins:{legend:{position:'bottom'}} }
+    });
+
+    // CHART: understanding
+    const ctxUn = document.getElementById('understandChart').getContext('2d');
+    new Chart(ctxUn, {
+      type: 'doughnut',
+      data: {
+        labels: ['Înțeleg clar', 'Nu înțeleg/Parțial'],
+        datasets: [{ data: [understandUE, 100-understandUE], backgroundColor: ['#0ea5a2','#f1f5f9'] }]
+      },
+      options: { responsive:true, plugins:{legend:{position:'bottom'}} }
+    });
+
+    // CHART: participation
+    const ctxPart = document.getElementById('participationChart').getContext('2d');
+    new Chart(ctxPart, {
+      type: 'doughnut',
+      data: { labels: ['Au participat', 'Nu au participat'], datasets:[{ data:[participated,100-participated], backgroundColor:['#2563eb','#eef6ff'] }] },
+      options: { responsive:true, plugins:{legend:{position:'bottom'}} }
+    });
+
+    // CHART: military awareness
+    const ctxMil = document.getElementById('militaryAwareness').getContext('2d');
+    new Chart(ctxMil, {
+      type: 'doughnut',
+      data: { labels:['Știu (62%)','Nu știu'], datasets:[{ data:[knowMilitary,100-knowMilitary], backgroundColor:['#f97316','#fff4e6'] }] },
+      options: { responsive:true, plugins:{legend:{position:'bottom'}} }
+    });
+
+    // CHART: budget opinion (41% necessary vs 39% redirect)
+    const ctxOp = document.getElementById('budgetOpinion').getContext('2d');
+    new Chart(ctxOp, {
+      type: 'pie',
+      data: {
+        labels:['Sustin creșterea bugetului militar','Redirecționare către educație/cohesiune','Alte opinii'],
+        datasets:[{
+          label:'Procent (%)',
+          data:[militaryNeeded, redirectToSocial, 100 - (militaryNeeded + redirectToSocial)],
+          backgroundColor:['#f97316','#06b6d4','#cbd5e1']
+        }]
+      },
+      options:{ responsive:true, plugins:{legend:{display:false}}, scales:{y:{beginAtZero:true, max:100}}}
+    });
+
+    // CHART: communication channels
+    const ctxComm = document.getElementById('commChart').getContext('2d');
+    new Chart(ctxComm, {
+      type:'doughnut',
+      data:{ labels:['Social media / evenimente școală (70%)','Altele'], datasets:[{ data:[socialMediaEffect,100-socialMediaEffect], backgroundColor:['#a78bfa','#eef2ff'] }] },
+      options:{ responsive:true, plugins:{legend:{position:'bottom'}} }
+    });
+
+    // Download button — use the uploaded file (if available on server)
+    const downloadBtn = document.getElementById('downloadBtn');
+    downloadBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      // If server serves the uploaded file under same folder, change href accordingly.
+      // For now we attempt to open a path; if not available, user can download from the chat attachment.
+      window.location.href = 'Raport_Analiza_Sondaj_European_Youth_Shared_Future.docx';
+    });
+
+  </script>
+</body>
+</html>

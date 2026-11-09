@@ -1,0 +1,778 @@
+/* style.css - Fixuri specifice pentru Apple */
+:root {
+  --bg: #f5f7fa;
+  --card: #ffffff;
+  --text: #1e293b;
+  --muted: #64748b;
+  --accent: #2563eb;
+  --accent-2: #06b6d4;
+  --radius: 12px;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --transition: all 0.25s ease;
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+/* RESET CRITIC pentru Apple */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  font-size: 16px;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  /* Fix pentru Safari */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* CONTAINER FIX - cel mai important */
+.container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 16px;
+  overflow-x: hidden;
+}
+
+/* HEADER FIXAT */
+header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding: 12px 0;
+  width: 100%;
+  position: relative;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.logo {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: white;
+  font-weight: 700;
+  padding: 10px 12px;
+  border-radius: var(--radius);
+  font-size: 16px;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Fix Safari */
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.site-title {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+  width: 100%;
+}
+
+.site-sub {
+  font-size: 13px;
+  color: var(--muted);
+  width: 100%;
+}
+
+/* NAVIGAȚIE FIXĂ */
+nav {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.nav-btn {
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--muted);
+  background: transparent;
+  transition: var(--transition);
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-width: 120px;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  /* Fix Safari */
+  -webkit-appearance: none;
+}
+
+.nav-btn:hover,
+.nav-btn:focus {
+  background: rgba(37, 99, 235, 0.1);
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.nav-btn.active {
+  background: var(--card);
+  color: var(--accent);
+  box-shadow: var(--shadow);
+}
+
+/* CARDURI FIXE */
+.card {
+  background: var(--card);
+  padding: 20px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 20px;
+  transition: var(--transition);
+  width: 100%;
+  /* Prevenir overflow în Safari */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+/* ===== Ajustări pentru grafice mari din pagina de sondaj ===== */
+.cardChart {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: clamp(16px, 3vw, 28px);
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
+  min-height: clamp(320px, 45vh, 520px); /* face cardurile mai înalte implicit */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cardChart:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+}
+
+.cardChart h4 {
+  font-size: clamp(18px, 2vw, 22px);
+  margin-bottom: 12px;
+  color: var(--accent);
+  text-align: center;
+}
+
+.cardChart .chart-wrapper {
+  flex: 1;
+  width: 100%;
+  height: clamp(300px, 50vh, 480px); /* grafic vizibil mai mare */
+  padding: 10px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.4), rgba(255,255,255,0.2));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Canvas fix – umple complet wrapperul */
+.cardChart .chart-wrapper canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Responsivitate specifică pentru ecrane mici */
+@media (max-width: 768px) {
+  .cardChart {
+    min-height: clamp(280px, 55vh, 400px);
+  }
+
+  .cardChart .chart-wrapper {
+    height: clamp(260px, 60vh, 380px);
+  }
+
+  .cardChart h4 {
+    font-size: 17px;
+  }
+}
+
+
+
+/* GRID FIX */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  width: 100%;
+}
+
+/* CAPITOLE FIXE */
+.chapter-card {
+  background: var(--card);
+  border-left: 4px solid var(--accent);
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  width: 100%;
+  overflow: hidden;
+}
+
+/* TABELE FIXE - IMPORTANT */
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 14px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  display: table; /* Schimbat din block */
+  table-layout: fixed; /* Adăugat */
+}
+
+.comparison-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 16px 0;
+}
+
+.comparison-table th,
+.comparison-table td {
+  padding: 12px 8px;
+  border-bottom: 1px solid #ddd;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.comparison-table th {
+  background: #4dabf7;
+  color: #fff;
+  font-size: 14px;
+  position: sticky;
+  left: 0;
+}
+
+/* SCHEME FIXE */
+.schemes {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.scheme-box {
+  background: #f9f9f9;
+  padding: 18px;
+  border-radius: var(--radius);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  transition: var(--transition);
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+/* GALERIE FIXĂ */
+.gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.gallery img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+  transition: var(--transition);
+  display: block; /* Fix pentru spații în Safari */
+}
+
+/* VIDEO CONTAINER FIX */
+.video-container {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
+  margin: 16px 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+  background: #000;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* HARTĂ FIXĂ */
+.map-container {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 75%;
+  margin: 16px 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+
+.map-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* GRAFICE FIXE */
+.chart-container {
+  width: 100%;
+  height: auto;
+  margin: 16px 0;
+  position: relative;
+}
+
+.chart-canvas, #pmChart {
+  width: 100% !important;
+  height: 250px !important; /* Înălțime fixă pentru stabilitate */
+  max-height: 400px;
+}
+
+/* FOOTER FIX */
+footer {
+  margin-top: 24px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+  padding: 16px 12px;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  width: 100%;
+}
+
+/* ========== MEDIA QUERIES SPECIFICE APPLE ========== */
+
+/* iPhone și dispozitive mici */
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 12px;
+    max-width: 100vw;
+  }
+  
+  body {
+    font-size: 15px;
+  }
+  
+  /* Fix pentru bara de notificări iPhone */
+  @supports (-webkit-touch-callout: none) {
+    body {
+      padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    }
+  }
+  
+  .card, .chapter-card {
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  
+  .nav-btn {
+    min-width: calc(50% - 6px);
+    font-size: 13px;
+    padding: 10px 12px;
+  }
+  
+  /* Fix pentru table overflow pe mobile */
+  .comparison-table-wrapper {
+    -webkit-overflow-scrolling: touch;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+  }
+}
+
+/* Fixuri specifice Safari */
+@supports (-webkit-touch-callout: none) {
+  .card, .chapter-card, .scheme-box {
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translateZ(0);
+  }
+  
+  /* Prevenir cliping în Safari */
+  .container {
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+  }
+}
+
+/* Orientare landscape */
+@media screen and (max-width: 768px) and (orientation: landscape) {
+  .container {
+    padding: 8px;
+  }
+  
+  header {
+    margin-bottom: 16px;
+  }
+  
+  .video-container,
+  .map-container {
+    padding-bottom: 45%;
+  }
+  
+  .chart-canvas, #pmChart {
+    height: 200px !important;
+  }
+}
+
+/* Dispozitive foarte mici */
+@media screen and (max-width: 360px) {
+  .container {
+    padding: 8px;
+  }
+  
+  .brand {
+    gap: 8px;
+  }
+  
+  .logo {
+    padding: 8px 10px;
+    font-size: 14px;
+    min-width: 40px;
+    min-height: 40px;
+  }
+  
+  .site-title {
+    font-size: 18px;
+  }
+  
+  .nav-btn {
+    min-width: 100%;
+    margin-bottom: 4px;
+  }
+  
+  nav {
+    gap: 4px;
+  }
+}
+
+/* Tabletă și mai mari */
+@media screen and (min-width: 769px) {
+  .container {
+    padding: 20px;
+  }
+  
+  header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .brand {
+    width: auto;
+  }
+  
+  .site-title, .site-sub {
+    width: auto;
+  }
+  
+  nav {
+    width: auto;
+    justify-content: flex-end;
+  }
+  
+  .nav-btn {
+    flex: none;
+    min-width: 110px;
+  }
+  
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+  
+  .schemes {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  
+  .scheme-box {
+    width: calc(50% - 6px);
+  }
+  
+  .gallery {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  
+  .gallery img {
+    width: calc(50% - 6px);
+  }
+}
+
+/* Desktop */
+@media screen and (min-width: 1024px) {
+  .container {
+    padding: 24px;
+  }
+  
+  .scheme-box {
+    width: calc(25% - 9px);
+  }
+  
+  .gallery img {
+    width: calc(33.333% - 8px);
+  }
+}
+
+/* Hover doar pe dispozitive care suportă */
+@media (hover: hover) {
+  .card:hover,
+  .chapter-card:hover,
+  .scheme-box:hover {
+    transform: translateY(-2px);
+  }
+}
+
+/* Accesibilitate */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.nav-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+
+/* Adaugă acest cod în CSS */
+.map-fixed {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%; /* 16:9 ratio */
+  margin: 20px 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.map-fixed iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+/* Adaugă acest cod în CSS */
+.map-container.small {
+  padding-bottom: 35%; /* mai mic decât 56.25% */
+}
+
+.map-container.medium {
+  padding-bottom: 45%; /* dimensiune medie */
+}
+
+
+/* survey page small tweaks */
+.card h3, .card h4 { color: var(--accent); }
+#downloadBtn { display:inline-block; background:linear-gradient(90deg,var(--accent),var(--accent-2)); color:white; padding:8px 12px; border-radius:10px; text-decoration:none; box-shadow:0 8px 20px rgba(37,99,235,0.18); }
+.chart-canvas { width:100%; height:260px; } /* default for survey charts; Chart.js will respect responsiveness */
+@media (max-width:768px) {
+  .chart-canvas { height:220px; }
+}
+
+
+
+.maps {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+
+.map-container {
+  flex: 1 1 320px;
+  min-width: 300px;
+  height: 320px;
+  background: #fff;
+  padding: 0.5rem;
+  box-sizing: border-box;
+}
+
+.map-container h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+}
+
+.map-container iframe {
+  width: 100%;
+  height: calc(100% - 1.5rem);
+  border: 0;
+  display: block;
+}
+
+@media (max-width: 700px) {
+  .map-container { min-width: 100%; height: 260px; }
+  .map-container iframe { height: calc(100% - 1.2rem); }
+}
+
+
+/* === SLIDESHOW MODERN CU RAPORT FIX === */
+.slideshow-container {
+  position: relative;
+  width: 100%;
+  max-width: 900px; /* limitează lățimea maximă */
+  max-height: 480px;
+  margin: 0 auto;
+  aspect-ratio: 16/ 9; /* menține proporția widescreen */
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  background: #f1f5f9;
+}
+
+/* Ascunde toate slide-urile implicit */
+.slide {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+/* Imaginea ocupă tot chenarul, păstrând aspect ratio-ul */
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* TAIE puțin marginile, dar arată full-frame */
+  object-position: center;
+  border-radius: var(--radius);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+
+/* Efect de fade */
+.fade {
+  animation: fadeEffect 1s ease-in-out;
+}
+
+@keyframes fadeEffect {
+  from { opacity: 0.4; }
+  to { opacity: 1; }
+}
+
+/* Butoane navigare */
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0,0,0,0.4);
+  color: white;
+  font-weight: bold;
+  padding: 10px 14px;
+  border-radius: 50%;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.3s ease;
+  font-size: 20px;
+  z-index: 10;
+}
+
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.6);
+}
+
+.prev { left: 15px; }
+.next { right: 15px; }
+
+/* Responsivitate */
+@media (max-width: 768px) {
+  .slideshow-container {
+    max-width: 100%;
+    aspect-ratio: 16 / 9;
+  }
+  .prev, .next {
+    padding: 8px 10px;
+    font-size: 16px;
+  }
+}
+/* === Logo liceu în header === */
+.school-logo {
+  height: 60px;
+  width: auto;
+  border-radius: 8px;
+  object-fit: contain;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  background: white;
+  padding: 4px;
+}
+
+/* Responsivitate */
+@media (max-width: 768px) {
+  .school-logo {
+    height: 50px;
+    margin-bottom: 8px;
+  }
+}
+
+
+/* === Logo-uri footer === */
+.footer-logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.footer-logos img {
+  height: 45px;
+  width: auto;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.1));
+  transition: transform 0.3s ease;
+}
+
+.footer-logos img:hover {
+  transform: scale(1.1);
+}
+
+/* Responsivitate footer */
+@media (max-width: 600px) {
+  .footer-logos img {
+    height: 36px;
+  }
+}
+
